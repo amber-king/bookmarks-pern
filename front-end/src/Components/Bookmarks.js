@@ -6,7 +6,11 @@ const API = process.env.REACT_APP_API_URL;
 
 function Bookmarks() {
   const [bookmarks, setBookmarks] = useState([]);
-  useEffect(() => {}, []);
+  useEffect(() => {
+    axios.get(`${API}/bookmarks`).then((response) => {
+      setBookmarks(response.data);
+    });
+  }, []);
   return (
     <div className="Bookmarks">
       <section>
