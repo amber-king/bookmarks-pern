@@ -1,5 +1,6 @@
 // TODO:  passed state bookmark as a prop & gain access to api data --v
 import axios from "axios";
+// import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Bookmark from "./Bookmark";
 
@@ -7,6 +8,7 @@ const API = process.env.REACT_APP_API_URL;
 
 function Bookmarks() {
   const [bookmarks, setBookmarks] = useState([]);
+  // const { id } = useParams;
   useEffect(() => {
     axios
       .get(`${API}/bookmarks`)
@@ -14,7 +16,7 @@ function Bookmarks() {
         setBookmarks(response.data);
       })
       .catch((error) => {
-        console.warn("catch:", error);
+        console.warn("catch", error);
       });
   }, []);
   return (
