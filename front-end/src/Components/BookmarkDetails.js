@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate} from "react-router-dom";
 const API = process.env.REACT_APP_APT_URL;
 
 function BookmarkDetails() {
   const [bookmark, setBookmark] = useState([]);
   const { id } = useParams;
+  const navigate = useNavigate()
 
   useEffect(() => {
     axios
@@ -18,6 +19,21 @@ function BookmarkDetails() {
         console.warn("catch:", error);
       });
   }, [id]);
+
+  const handleDelete = () => {
+    deleteBookmark();
+  };
+
+  const deleteBookmark = () => {
+    axios
+      .delete(`${API}/bookmarks/${id}`)
+      .then(() => {
+        navigate(`/bookmarks`);
+      })
+      .catch((e) => {
+        console.warn("catch:", e);
+      });
+  };
   return (
     <article>
       <h3>
@@ -45,7 +61,7 @@ function BookmarkDetails() {
           </Link>
         </div>
         <div>
-          <button>Delete</button>
+          <button onClick={handleDelete}>Delete</button>
         </div>
       </div>
     </article>
