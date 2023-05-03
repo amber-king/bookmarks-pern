@@ -14,7 +14,7 @@ function Reviews() {
       console.log(response.data);
       setReviews(response.data);
     });
-  }, [id, API]);
+  }, [id]);
   return (
     <section className="Reviews">
       {reviews.map((review) => (
