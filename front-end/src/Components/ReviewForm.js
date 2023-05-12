@@ -27,6 +27,7 @@ function ReviewForm(props) {
     event.preventDefault();
     props.handleSubmit(review, id);
     if (reviewDetails) {
+      console.log("review id:", reviewDetails.id)
       props.toggleView();
     }
     setReview({

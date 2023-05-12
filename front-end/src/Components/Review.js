@@ -10,7 +10,11 @@ function Review({ review, handleDelete, handleSubmit }) {
     <div className="Review">
       <button onClick={toggleView}>Edit this review</button>
       {viewEditForm ? (
-        <ReviewForm reviewDetails={review} />
+        <ReviewForm
+          reviewDetails={review}
+          handleSubmit={handleSubmit}
+          toggleView={toggleView}
+        />
       ) : (
         <div>
           <h4>
